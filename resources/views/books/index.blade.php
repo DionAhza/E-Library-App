@@ -2,6 +2,7 @@
 
 @section('content')
     <h1 class="mb-6">Selamat datang di halaman books</h1>
+   
     <a href="{{ route('book.create') }}" class="py-4 px-8 m-8 mb-9 bg-blue-500 text-white rounded-full hover:bg-blue-300 hover:text-gray-200 transition ">Add books</a>
     <div class="relative overflow-x-auto bg-gray-300 shadow-xs rounded-base border border-default-medium mt-6">
             <table class="w-full text-sm text-left text-body">
@@ -19,19 +20,21 @@
                     </thead>
                     <tbody>
                         <tr class="bg-gray-400 border-b border-default">
+                            @foreach ($books as $book)
                             <td class="px-6 py-4">1</td>
-                            <td class="px-6 py-4">contoh</td>
-                            <td class="px-6 py-4">Hujan</td>
-                            <td class="px-6 py-4">Novel terbaru</td>
-                            <td class="px-6 py-4">2020</td>
-                            <td class="px-6 py-4">Action</td>
-                            <td class="px-6 py-4">Tereliye</td>
+                            <td class="px-6 py-4">{{ $book->image }}</td>
+                            <td class="px-6 py-4">{{ $book->judul }}</td>
+                            <td class="px-6 py-4">{{  $book->sinopsis }}</td>
+                            <td class="px-6 py-4">{{ $book->tahun_terbit }}</td>
+                            <td class="px-6 py-4">{{  $book->genre->name_genre }}</td>
+                            <td class="px-6 py-4">{{ $book->author->name_author }}</td>
                             <td class="px-6 py-4">
-                                <a href="">Detail</a>
+                                <a href="">Detail</a> 
                                 <a href="">Delete</a>
                                 <a href="">Edit</a>
                             </td>
-                        </tr>
+                              @endforeach
+                        </tr>  
                     </tbody>
             </table>
     </div>

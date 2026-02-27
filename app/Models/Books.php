@@ -16,11 +16,11 @@ class Books extends Model
         "genre_id"
     ];
 
-    public function authors(){
+    public function author(){
         return $this->belongsTo(Authors::class);
     }
 
-    public function genres(){
+    public function genre(){
         return $this->belongsTo(Genres::class);
     }
 }

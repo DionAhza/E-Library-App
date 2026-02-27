@@ -32,6 +32,7 @@ Route::put('/author/update/{id}', [AuthorsController::class, 'update'])->name('p
  //Books
 Route::get('/books', [BooksController::class, 'index'])->name('book.index');
 Route::get('/books/create', [BooksController::class, 'create'])->name('book.create');
+Route::post('/books/create', [BooksController::class, 'store'])->name('book.store');
  //END BOOKS
 
 
