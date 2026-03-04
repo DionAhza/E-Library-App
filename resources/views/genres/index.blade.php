@@ -2,6 +2,16 @@
 @section('content')
     <h1 class="mb-8">Welcome to Genres</h1>
     <a href="{{ route('genre.create') }} " class="py-4 px-8 bg-blue-500 text-white">Add genre</a>
+    @if (session('berhasil'))
+        <script>
+            Swal.fire({
+            title: "Success",
+            text: "{{ session('berhasil') }}",
+            icon: "success"
+            });
+        </script>
+    @endif
+ 
     <table class="min-w-full border border-blue-500 rounded-lg overflow-hidden mt-8">
         <thead>
                 <tr>

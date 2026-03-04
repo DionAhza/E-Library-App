@@ -1,14 +1,22 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthorsController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\GenresController;
+use App\Models\Books;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
-});
 
+Route::get('/', [AuthController::class, 'index'])->name('home');
+
+//Route Auth 
+Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
+Route::post('/login',[AuthController::class, 'actionLogin'])->name('action.login');
+Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
+Route::get('/dashboard',[AuthController::class, 'dashboard'])->name('dashboard');
+//END ROUTE AUTH
 
 // ROute Genre
  Route::get('/genre',[GenresController::class, 'index'])->name('genre.index');
@@ -33,6 +41,12 @@ Route::put('/author/update/{id}', [AuthorsController::class, 'update'])->name('p
 Route::get('/books', [BooksController::class, 'index'])->name('book.index');
 Route::get('/books/create', [BooksController::class, 'create'])->name('book.create');
 Route::post('/books/create', [BooksController::class, 'store'])->name('book.store');
+Route::get('/books/detail/{id}',[BooksController::class, 'detail'])->name('book.detail');
+Route::delete('/books/delete/{id}', [BooksController::class, 'destroy'])->name('book.delete');
+Route::get('/books/edit/{id}', [BooksController::class, 'edit'])->name('book.edit');
+Route::put('/books/update/{id}', [BooksController::class, 'update'])->name('book.update');
  //END BOOKS
+
+
 
 

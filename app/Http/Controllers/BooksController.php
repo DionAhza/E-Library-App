@@ -6,6 +6,7 @@ use App\Models\Authors;
 use App\Models\Books;
 use App\Models\Genres;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BooksController extends Controller
 {
@@ -47,5 +48,52 @@ class BooksController extends Controller
          ]);
 
          return redirect()->route('book.index')->with('success','berhasil menambahkan data');
+    }
+
+    public function detail($id){
+        $detail = Books::find($id);
+        return view('books.detail', compact('detail'));
+    }
+
+    public function destroy($id){
+        $delete = Books::find($id);
+
+        if($delete->image && Storage::disk('public')->exists($delete->image)){
+            Storage::disk('public')->delete($delete->image);   
+        }
+
+        $delete->delete();
+
+        return redirect()->route('book.index')->with('success','berhasil menghapus data');
+    }
+
+    public function edit($id){
+        $book = Books::find($id);
+        $genres = Genres::all();
+        $authors = Authors::all();
+        return view('books.edit', compact('book','genres','authors'));
+    }
+
+    public function update(Request $request, $id){
+        $book = Books::find($id);
+
+        $validated = $request->validate([
+            'judul' => 'required',
+            'sinopsis'=> 'required',
+            'tahun_terbit'=>'required',
+            'genre_id'=>'required',
+            'author_id' =>'required'
+        ]);
+
+        if($book->image && Storage::disk('public')->exists($book->image)){
+
+            $imagePath = $request->file('image')->store('books', 'public');
+
+            $validated['image'] = $imagePath;
+        }
+
+        $book->update($validated);
+
+        return redirect()->route('book.index')->with('success','berhasil update data');
     }
 }

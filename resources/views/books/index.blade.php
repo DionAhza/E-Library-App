@@ -19,22 +19,28 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($books as $book)
                         <tr class="bg-gray-400 border-b border-default">
-                            @foreach ($books as $book)
                             <td class="px-6 py-4">1</td>
-                            <td class="px-6 py-4">{{ $book->image }}</td>
+                            <td class="px-6 py-4"><img width="200   " src="{{ asset('storage/' . $book->image) }}" alt=""></td>
                             <td class="px-6 py-4">{{ $book->judul }}</td>
                             <td class="px-6 py-4">{{  $book->sinopsis }}</td>
                             <td class="px-6 py-4">{{ $book->tahun_terbit }}</td>
                             <td class="px-6 py-4">{{  $book->genre->name_genre }}</td>
                             <td class="px-6 py-4">{{ $book->author->name_author }}</td>
                             <td class="px-6 py-4">
-                                <a href="">Detail</a> 
-                                <a href="">Delete</a>
-                                <a href="">Edit</a>
+                                <a href="{{  route('book.detail', $book->id) }}">Detail</a> 
+
+                               <form action="{{ route('book.delete', $book->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-500">DELETE</button>
+                               </form>
+
+                                <a href="{{ route('book.edit', $book->id) }}">Edit</a>
                             </td>
-                              @endforeach
                         </tr>  
+                        @endforeach
                     </tbody>
             </table>
     </div>

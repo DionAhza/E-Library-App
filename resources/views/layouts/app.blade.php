@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      @vite('resources/css/app.css',' resources/js/app.js')
 </head>
 <body class="bg-gray-100">
@@ -21,8 +22,8 @@
         </aside>
         <div class="flex-1 flex flex-col">
         <nav class="bg-white shadow p-4 flex justify-between">
-            <p>Welcome, <span>User</span></p>
-            <a href="" class="text-red-500">Logout</a>
+            <p>Welcome, <span>{{ Auth::user()->name }}</span></p>
+            <a href="{{  route('logout') }}" class="text-red-500">Logout</a>
         </nav>
 
         <main class="p-6">
@@ -31,5 +32,6 @@
    </div>
    </div>
    <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+   
 </body>
 </html>
