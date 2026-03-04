@@ -31,7 +31,7 @@ Pastikan sudah menginstall:
 ### 1️⃣ Clone Repository
 ```bash
 git clone https://github.com/DionAhza/E-Library-app
-cd e-library
+ 
 ```
 
 ```bash
