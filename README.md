@@ -30,8 +30,12 @@ Pastikan sudah menginstall:
 
 ### 1️⃣ Clone Repository
 ```bash
-git clone https://github.com/DionAhza/E-Library
-cd e-library
+git clone https://github.com/DionAhza/E-Library-app
+ 
+```
+
+```bash
+cd e-library-app
 ```
 
 ### 2️⃣ Install Dependency Laravel
@@ -62,6 +66,9 @@ php artisan key:generate
 
 ### 6️⃣ Atur Database di File `.env`
 ```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
 DB_DATABASE=belajar_perpus_db
 DB_USERNAME=root
 DB_PASSWORD=
@@ -77,11 +84,8 @@ Untuk development:
 ```bash
 npm run dev
 ```
+jka tidak bisa di vscode jalankan di termilan laragon
 
-Untuk production:
-```bash
-npm run build
-```
 
 ### 9️⃣ Jalankan Server
 ```bash
