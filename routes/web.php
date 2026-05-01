@@ -10,15 +10,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'index'])->name('home');
 
+
+Route::middleware('guest')->group(function(){
 //Route Auth 
-Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
 Route::post('/login',[AuthController::class, 'actionLogin'])->name('action.login');
+Route::post('/register',[AuthController::class, 'actionRegister'])->name('action.register');
+//END ROUTE AUTH
+});
+
+
+Route::middleware('auth')->group(function(){
+// ROute Genre
 Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
 Route::get('/dashboard',[AuthController::class, 'dashboard'])->name('dashboard');
-//END ROUTE AUTH
-
-// ROute Genre
  Route::get('/genre',[GenresController::class, 'index'])->name('genre.index');
  Route::get('/genre/create',[GenresController::class, 'create'])->name('genre.create');
  Route::post('/genre/create',[GenresController::class, 'store'])->name('genre.store');
@@ -36,6 +42,7 @@ Route::delete('/author/delete/{id}',[AuthorsController::class, 'destroy'])->name
 Route::get('/author/edit/{id}', [AuthorsController::class, 'edit'])->name('penulis.edit');
 Route::put('/author/update/{id}', [AuthorsController::class, 'update'])->name('penulis.update');
  // END ROUTE AUTHOR
+ Route::resource('penulis', AuthorsController::class);
 
  //Books
 Route::get('/books', [BooksController::class, 'index'])->name('book.index');
@@ -46,6 +53,7 @@ Route::delete('/books/delete/{id}', [BooksController::class, 'destroy'])->name('
 Route::get('/books/edit/{id}', [BooksController::class, 'edit'])->name('book.edit');
 Route::put('/books/update/{id}', [BooksController::class, 'update'])->name('book.update');
  //END BOOKS
+}); 
 
 
 

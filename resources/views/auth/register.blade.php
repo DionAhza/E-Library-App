@@ -4,12 +4,29 @@
     <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="mx-auto h-10 w-auto" />
     <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Register your account</h2>
   </div>
-
+  @if (session('error'))
+        <script>
+            Swal.fire({
+            title: "error",
+            text: "{{ session( 'error') }}",
+            icon: "error"
+            });
+        </script>
+    @endif 
+    
+    @if($errors->any())
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+    
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form action="#" method="POST" class="space-y-6">
-
+    <form action="{{  route('action.register') }}" method="POST" class="space-y-6">
+        @csrf  
       <div>
-        <label for="username" class="block text-sm/6 font-medium text-gray-100">Username</label>
+        <label for="username" cl ass="block text-sm/6 font-medium text-gray-100">Username</label>
         <div class="mt-2">
           <input id="username" type="text" name="username" required autocomplete="username" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
         </div>
@@ -40,7 +57,7 @@
 
     <p class="mt-10 text-center text-sm/6 text-white">
       Sudah punya akun?
-      <a href="{{  route('auth.login')}}" class="font-semibold text-indigo-400 hover:text-indigo-300">Login</a>
+      <a href="{{  route('login')}}" class="font-semibold text-indigo-400 hover:text-indigo-300">Login</a>
     </p>
   </div>
 </div>

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('author_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
-    }  
+    }
 
     /**
      * Reverse the migrations.

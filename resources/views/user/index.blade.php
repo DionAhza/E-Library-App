@@ -12,7 +12,16 @@
 <body>
     
     <x-navbar></x-navbar>
-
+    
+   @if (session('success'))
+        <script>
+            Swal.fire({
+            title: "Success",
+            text: "{{ session('success') }}",
+            icon: "success"
+            });
+        </script>
+    @endif
 
     <div class="container mx-auto p-6">
       

@@ -13,7 +13,7 @@
     @endif
     <div class="min-h-screen bg-gray-100 flex items-center justify-center py-10">
         <div class="w-full max-w-3xl bg-white shadow-xl rounded-2xl p-8">
-            <form action="{{  route('book.store') }}" method="POST" enctype="multipart/form-data">
+            <form action=" {{  route('book.store') }}" method="POST" enctype="multipart/form-data">
             
               @csrf
 

@@ -31,12 +31,18 @@
       </div>
       
       @guest
-      
+
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <a href="{{ route('auth.login') }}" class="px-6 py-3 bg-blue-500 rounded-xl text-white">Login</a>
+        <a href="{{ route('login') }}" class="px-6 py-3 bg-blue-500 rounded-xl text-white">Login</a>
       </div> 
 
         @endguest
+
+    @auth
+      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        <a href="{{ route('logout') }}" class="px-6 py-3 bg-red-500 rounded-xl text-white">Logout</a>
+      </div> 
+        @endauth
       
     </div>
   </div>

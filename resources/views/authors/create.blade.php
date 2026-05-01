@@ -5,7 +5,7 @@
     <div class="container mx-auto">
     <h1 class="mb-5">Welcome to Create Author</h1>
     <form action="{{ route('penulis.store')}}" method="POST" class="space-y-4">
-        @csrf
+        @csrf 
         <div>
             <label for="">Name Author</label>
             <input type="text" name="name_author" class="border w-full p-2 rounded" id="">
